@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonauto AI · tutorial musik modern</title>
+    <!-- Font & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: linear-gradient(145deg, #f7f9fe 0%, #edf1fa 100%);
+            color: #1b1e2b;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-radius: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 40px -10px rgba(10, 20, 50, 0.15), 0 0 0 1px rgba(255,255,255,0.8) inset;
+            padding: 2.5rem 2rem;
+            width: 100%;
+            max-width: 1300px;
+            transition: all 0.2s ease;
+        }
+
+        /* header */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-icon {
+            background: #1f2b3c;
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 18px -6px rgba(0,20,40,0.3);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 650;
+            letter-spacing: -0.02em;
+            background: linear-gradient(130deg, #1F2A3F, #2E3B4E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-badge {
+            background: rgba(75, 100, 140, 0.2);
+            border-radius: 60px;
+            padding: 0.3rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.6);
+            color: #1e2b3a;
+            margin-left: auto;
+        }
+
+        /* grid tutorial - menyesuaikan 9:16 */
+        .tutorial-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2.5rem 0 2rem;
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 1.8rem;
+            border: 1px solid rgba(255,255,255,0.8);
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.3s;
+            box-shadow: 0 10px 18px -12px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 30px -12px rgba(40, 60, 100, 0.25);
+            border-color: rgba(255,255,255,1);
+        }
+
+        .image-container {
+            width: 100%;
+            aspect-ratio: 9/16; /* Rasio 9:16 sesuai permintaan */
+            overflow: hidden;
+            background: #ced8e8;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Gambar akan menyesuaikan tanpa distortion */
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .step-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .step-number {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #ffffffc7;
+            backdrop-filter: blur(5px);
+            width: 36px;
+            height: 36px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: 1px solid white;
+            color: #182230;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+
+        .step-caption {
+            padding: 1.3rem 1rem 1.2rem 1rem;
+            background: rgba(255,255,255,0.5);
+            flex: 1;
+        }
+
+        .step-caption p {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #1b2536;
+            line-height: 1.5;
+        }
+
+        .step-caption strong {
+            color: #1f2f44;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+            letter-spacing: -0.2px;
+        }
+
+        /* play section */
+        .player-preview {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 3rem;
+            border: 1px solid rgba(255,255,255,0.8);
+            padding: 1.5rem 2rem;
+            margin-top: 2.8rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .cover-art {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex: 2 1 260px;
+        }
+
+        .cover-mini {
+            width: 70px;
+            height: 70px;
+            border-radius: 22px;
+            background: linear-gradient(125deg, #202b3a, #3d506e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 10px 15px -5px #1f2b3c40;
+        }
+
+        .track-info h4 {
+            font-size: 1.2rem;
+            font-weight: 650;
+            margin-bottom: 0.2rem;
+        }
+
+        .track-info p {
+            color: #3f4c61;
+            font-weight: 400;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .waveform {
+            flex: 3 1 300px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .wave-bars {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 44px;
+            flex: 2;
+        }
+
+        .wave-bars span {
+            width: 6px;
+            height: calc(20px + (var(--h, 10) * 1px));
+            background: #2f4057;
+            border-radius: 20px;
+            opacity: 0.7;
+            transition: height 0.2s;
+        }
+
+        .play-btn {
+            background: #1f293d;
+            border: none;
+            color: white;
+            width: 58px;
+            height: 58px;
+            border-radius: 38px;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.15s ease;
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 8px 14px -6px #10161e50;
+        }
+
+        .play-btn:hover {
+            background: #2b3c57;
+            transform: scale(1.02);
+        }
+
+        .play-btn:active {
+            transform: scale(0.97);
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: #4d5e77;
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-note span i {
+            margin-right: 5px;
+            opacity: 0.7;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: rgba(0,0,0,0.05);
+            margin: 1rem 0;
+        }
+
+        /* responsive */
+        @media (max-width: 1000px) {
+            .tutorial-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.8rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .tutorial-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 { font-size: 1.8rem; }
+            .player-preview { flex-direction: column; align-items: stretch; }
+            .glass-card { padding: 1.5rem; }
+        }
+
+        /* wave bars height */
+        .wave-bars span:nth-child(1) { --h: 26; height: 26px; }
+        .wave-bars span:nth-child(2) { --h: 16; height: 16px; }
+        .wave-bars span:nth-child(3) { --h: 32; height: 32px; }
+        .wave-bars span:nth-child(4) { --h: 22; height: 22px; }
+        .wave-bars span:nth-child(5) { --h: 28; height: 28px; }
+        .wave-bars span:nth-child(6) { --h: 18; height: 18px; }
+        .wave-bars span:nth-child(7) { --h: 30; height: 30px; }
+        .wave-bars span:nth-child(8) { --h: 20; height: 20px; }
+    </style>
+</head>
+<body>
+    <div class="glass-card">
+        <!-- header modern -->
+        <div class="hero">
+            <div class="hero-icon"><i class="fas fa-robot"></i></div>
+            <h1>sonauto<span style="font-weight:300;">.</span>ai <span style="font-size:1.2rem; background: none; -webkit-text-fill-color: #3c4f6e;">tutorial</span></h1>
+            <div class="hero-badge"><i class="fas fa-music" style="margin-right: 6px;"></i>AI musik generator</div>
+        </div>
+
+        <!-- 4 step grid : poto1.jpg – poto4.jpg dengan rasio 9:16 -->
+        <div class="tutorial-grid">
+            <!-- step 1 / poto1.jpg -->
+            <div class="step-card">
+                <div class="image-container">
+                    <span class="step-number">1</span>
+                    <img src="poto1.jpg" alt="Login ke Sonauto AI" loading="lazy">
+                </div>
+                <div class="step-caption">
+                    <p><strong>🔐 Login</strong> Pertama tama kamu log dulu — bebas pake apa aja, bisa pake log Google, email, atau Apple.</p>
+                </div>
+            </div>
+            <!-- step 2 / poto2.jpg -->
+            <div class="step-card">
+                <div class="image-container">
+                    <span class="step-number">2</span>
+                    <img src="poto2.jpg" alt="Pilih genre musik" loading="lazy">
+                </div>
+                <div class="step-caption">
+                    <p><strong>🎸 Pilih genre</strong> Tambahin genre bebas apa aja — biar AI tau mood kamu. Tinggal klik pilihan atau tulis manual.</p>
+                </div>
+            </div>
+            <!-- step 3 / poto3.jpg -->
+            <div class="step-card">
+                <div class="image-container">
+                    <span class="step-number">3</span>
+                    <img src="poto3.jpg" alt="Generate lagu" loading="lazy">
+                </div>
+                <div class="step-caption">
+                    <p><strong>✨ Generate</strong> Jelasin lagu yang kamu mau (deskripsi bebas), lalu klik tombol generate dan tunggu sebentar.</p>
+                </div>
+            </div>
+            <!-- step 4 / poto4.jpg -->
+            <div class="step-card">
+                <div class="image-container">
+                    <span class="step-number">4</span>
+                    <img src="poto4.jpg" alt="Hasil dan play musik" loading="lazy">
+                </div>
+                <div class="step-caption">
+                    <p><strong>🎧 Play</strong> Hasil bakal nampilin sendiri dan enjoy play musik — langsung putar atau download.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- mini quote -->
+        <div style="display: flex; justify-content: center; margin: 1rem 0 0.2rem;">
+            <span style="background: rgba(200,215,235,0.5); padding: 0.4rem 1.2rem; border-radius: 60px; font-size:0.9rem; font-weight:400; backdrop-filter: blur(5px);">
+                🔮 dari login sampai dengerin lagu — all in one
+            </span>
+        </div>
+
+        <!-- interactive player preview -->
+        <div class="player-preview">
+            <div class="cover-art">
+                <div class="cover-mini">
+                    <i class="fas fa-play"></i>
+                </div>
+                <div class="track-info">
+                    <h4>Lautan Anggrek <span style="font-weight: 300; font-size: 0.8rem; background: #cfdeee; padding: 2px 10px; border-radius: 40px; margin-left: 6px;">synthwave</span></h4>
+                    <p><i class="fas fa-wave-square"></i> generated by Sonauto AI · 3:24</p>
+                </div>
+            </div>
+            <div class="waveform">
+                <div class="wave-bars">
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <button class="play-btn" id="playBtn" aria-label="play preview">
+                    <i class="fas fa-play" id="playIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- status -->
+        <div style="display: flex; gap: 0.8rem; justify-content: flex-end; margin-top: 0.5rem; font-size: 0.9rem; color: #3e5572;">
+            <span><i class="far fa-check-circle" style="color: #2e7d5e;"></i> Track siap</span>
+            <span><i class="far fa-clock"></i> 2 detik lalu</span>
+        </div>
+
+        <hr />
+
+        <!-- footer -->
+        <div class="footer-note">
+            <span><i class="fab fa-github"></i> deploy ke Vercel</span>
+            <span><i class="fas fa-camera-retro"></i> poto1.jpg – poto4.jpg (9:16)</span>
+            <span><i class="fas fa-mobile-alt"></i> UI/UX modern · glassmorphism</span>
+        </div>
+    </div>
+
+    <!-- script play simulasi -->
+    <script>
+        (function() {
+            const playBtn = document.getElementById('playBtn');
+            const icon = document.getElementById('playIcon');
+            let isPlaying = false;
+
+            playBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (isPlaying) {
+                    icon.classList.remove('fa-pause');
+                    icon.classList.add('fa-play');
+                    playBtn.style.background = '#1f293d';
+                } else {
+                    icon.classList.remove('fa-play');
+                    icon.classList.add('fa-pause');
+                    playBtn.style.background = '#385a7a';
+                }
+                isPlaying = !isPlaying;
+            });
+        })();
+    </script>
+</body>
+  </html>
