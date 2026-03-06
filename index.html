@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sonauto AI · tutorial musik modern</title>
+    <title>Tutorial AI Musik · pakai Sonauto</title>
     <!-- Font & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,6 +27,7 @@
             justify-content: center;
             align-items: center;
             padding: 2rem 1.5rem;
+            scroll-behavior: smooth;
         }
 
         .glass-card {
@@ -85,6 +86,34 @@
             margin-left: auto;
         }
 
+        /* banner info gratis */
+        .gratis-banner {
+            background: rgba(46, 125, 90, 0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(90, 170, 130, 0.35);
+            border-radius: 60px;
+            padding: 0.9rem 1.8rem;
+            margin: 1.5rem 0 1rem 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            font-size: 1.1rem;
+            font-weight: 480;
+            color: #1c3a2e;
+            box-shadow: 0 6px 14px rgba(60, 120, 90, 0.1);
+        }
+        .gratis-banner i {
+            color: #2e7d5e;
+            font-size: 1.5rem;
+        }
+        .gratis-banner a {
+            color: #0f3f2d;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1.5px dotted #2e7d5e;
+        }
+
         /* grid tutorial - menyesuaikan 9:16 */
         .tutorial-grid {
             display: grid;
@@ -114,7 +143,7 @@
 
         .image-container {
             width: 100%;
-            aspect-ratio: 9/16; /* Rasio 9:16 sesuai permintaan */
+            aspect-ratio: 9/16;
             overflow: hidden;
             background: #ced8e8;
             position: relative;
@@ -124,7 +153,7 @@
         .image-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Gambar akan menyesuaikan tanpa distortion */
+            object-fit: cover;
             display: block;
             transition: transform 0.5s ease;
         }
@@ -175,104 +204,43 @@
             letter-spacing: -0.2px;
         }
 
-        /* play section */
-        .player-preview {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 3rem;
-            border: 1px solid rgba(255,255,255,0.8);
-            padding: 1.5rem 2rem;
-            margin-top: 2.8rem;
+        /* floating scroll svg */
+        .scroll-float {
+            position: fixed;
+            right: 28px;
+            bottom: 28px;
             display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
+            flex-direction: column;
+            gap: 16px;
+            z-index: 999;
         }
-
-        .cover-art {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            flex: 2 1 260px;
-        }
-
-        .cover-mini {
-            width: 70px;
-            height: 70px;
-            border-radius: 22px;
-            background: linear-gradient(125deg, #202b3a, #3d506e);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-            box-shadow: 0 10px 15px -5px #1f2b3c40;
-        }
-
-        .track-info h4 {
-            font-size: 1.2rem;
-            font-weight: 650;
-            margin-bottom: 0.2rem;
-        }
-
-        .track-info p {
-            color: #3f4c61;
-            font-weight: 400;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .waveform {
-            flex: 3 1 300px;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .wave-bars {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            height: 44px;
-            flex: 2;
-        }
-
-        .wave-bars span {
-            width: 6px;
-            height: calc(20px + (var(--h, 10) * 1px));
-            background: #2f4057;
-            border-radius: 20px;
-            opacity: 0.7;
-            transition: height 0.2s;
-        }
-
-        .play-btn {
-            background: #1f293d;
+        .scroll-float button {
+            background: #16212e;
             border: none;
-            color: white;
-            width: 58px;
-            height: 58px;
-            border-radius: 38px;
-            font-size: 1.6rem;
+            border-radius: 60px;
+            width: 54px;
+            height: 54px;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 12px 28px -8px #03060b80, 0 0 0 2px rgba(255,255,255,0.4) inset;
             cursor: pointer;
-            transition: 0.15s ease;
-            border: 1px solid rgba(255,255,255,0.5);
-            box-shadow: 0 8px 14px -6px #10161e50;
+            transition: all 0.2s ease;
+            color: white;
+            font-size: 1.6rem;
+            backdrop-filter: blur(10px);
+            background: rgba(22, 33, 46, 0.85);
+        }
+        .scroll-float button:hover {
+            background: #26384f;
+            transform: scale(1.05);
         }
 
-        .play-btn:hover {
-            background: #2b3c57;
-            transform: scale(1.02);
-        }
-
-        .play-btn:active {
-            transform: scale(0.97);
+        hr {
+            border: none;
+            height: 1px;
+            background: rgba(0,0,0,0.05);
+            margin: 1rem 0;
         }
 
         .footer-note {
@@ -290,13 +258,6 @@
             opacity: 0.7;
         }
 
-        hr {
-            border: none;
-            height: 1px;
-            background: rgba(0,0,0,0.05);
-            margin: 1rem 0;
-        }
-
         /* responsive */
         @media (max-width: 1000px) {
             .tutorial-grid {
@@ -310,32 +271,29 @@
                 grid-template-columns: 1fr;
             }
             .hero h1 { font-size: 1.8rem; }
-            .player-preview { flex-direction: column; align-items: stretch; }
             .glass-card { padding: 1.5rem; }
+            .scroll-float { right: 16px; bottom: 16px; }
+            .scroll-float button { width: 48px; height: 48px; font-size: 1.4rem; }
         }
-
-        /* wave bars height */
-        .wave-bars span:nth-child(1) { --h: 26; height: 26px; }
-        .wave-bars span:nth-child(2) { --h: 16; height: 16px; }
-        .wave-bars span:nth-child(3) { --h: 32; height: 32px; }
-        .wave-bars span:nth-child(4) { --h: 22; height: 22px; }
-        .wave-bars span:nth-child(5) { --h: 28; height: 28px; }
-        .wave-bars span:nth-child(6) { --h: 18; height: 18px; }
-        .wave-bars span:nth-child(7) { --h: 30; height: 30px; }
-        .wave-bars span:nth-child(8) { --h: 20; height: 20px; }
     </style>
 </head>
 <body>
     <div class="glass-card">
         <!-- header modern -->
         <div class="hero">
-            <div class="hero-icon"><i class="fas fa-robot"></i></div>
-            <h1>sonauto<span style="font-weight:300;">.</span>ai <span style="font-size:1.2rem; background: none; -webkit-text-fill-color: #3c4f6e;">tutorial</span></h1>
-            <div class="hero-badge"><i class="fas fa-music" style="margin-right: 6px;"></i>AI musik generator</div>
+            <div class="hero-icon"><i class="fas fa-headphones-alt"></i></div>
+            <h1>tutorial <span style="font-weight:300;">pakai</span> AI musik</h1>
+            <div class="hero-badge"><i class="fas fa-music" style="margin-right: 6px;"></i>sonauto.ai</div>
         </div>
 
-        <!-- 4 step grid : poto1.jpg – poto4.jpg dengan rasio 9:16 -->
-        <div class="tutorial-grid">
+        <!-- banner gratis -->
+        <div class="gratis-banner">
+            <i class="fas fa-gift"></i>
+            <span><strong>AI musik ini gratis!</strong> Kamu bisa generate berapapun tanpa bayar sepeserpun. Langsung aja ke website → <a href="https://sonauto.ai" target="_blank" rel="noopener">sonauto.ai <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a></span>
+        </div>
+
+        <!-- 4 step grid dengan poto1.jpg - poto4.jpg -->
+        <div class="tutorial-grid" id="tutorialGrid">
             <!-- step 1 / poto1.jpg -->
             <div class="step-card">
                 <div class="image-container">
@@ -343,17 +301,17 @@
                     <img src="poto1.jpg" alt="Login ke Sonauto AI" loading="lazy">
                 </div>
                 <div class="step-caption">
-                    <p><strong>🔐 Login</strong> Pertama tama kamu log dulu — bebas pake apa aja, bisa pake log Google, email, atau Apple.</p>
+                    <p><strong>🔐 Login dulu</strong> Pertama, login bebas pake Google, email, atau Apple. Klik sign in di pojok kanan atas.</p>
                 </div>
             </div>
-            <!-- step 2 / poto2.jpg -->
+            <!-- step 2 / poto2.jpg (dengan tambahan model v3) -->
             <div class="step-card">
                 <div class="image-container">
                     <span class="step-number">2</span>
-                    <img src="poto2.jpg" alt="Pilih genre musik" loading="lazy">
+                    <img src="poto2.jpg" alt="Pilih model v3 dan genre" loading="lazy">
                 </div>
                 <div class="step-caption">
-                    <p><strong>🎸 Pilih genre</strong> Tambahin genre bebas apa aja — biar AI tau mood kamu. Tinggal klik pilihan atau tulis manual.</p>
+                    <p><strong>🎛️ Pilih model v3</strong> Gunakan model terbaru v3 untuk kualitas musik bagus — mendukung durasi 3–4 menit. Tentukan genre sesuai mood.</p>
                 </div>
             </div>
             <!-- step 3 / poto3.jpg -->
@@ -363,17 +321,17 @@
                     <img src="poto3.jpg" alt="Generate lagu" loading="lazy">
                 </div>
                 <div class="step-caption">
-                    <p><strong>✨ Generate</strong> Jelasin lagu yang kamu mau (deskripsi bebas), lalu klik tombol generate dan tunggu sebentar.</p>
+                    <p><strong>✨ Generate</strong> Tulis deskripsi lagu yang kamu mau (bebas), lalu klik generate dan tunggu beberapa detik.</p>
                 </div>
             </div>
             <!-- step 4 / poto4.jpg -->
             <div class="step-card">
                 <div class="image-container">
                     <span class="step-number">4</span>
-                    <img src="poto4.jpg" alt="Hasil dan play musik" loading="lazy">
+                    <img src="poto4.jpg" alt="Play dan download musik" loading="lazy">
                 </div>
                 <div class="step-caption">
-                    <p><strong>🎧 Play</strong> Hasil bakal nampilin sendiri dan enjoy play musik — langsung putar atau download.</p>
+                    <p><strong>🎶 Play & download</strong> Hasil muncul otomatis. Putar atau download lagu — semua gratis, tanpa watermark.</p>
                 </div>
             </div>
         </div>
@@ -381,68 +339,85 @@
         <!-- mini quote -->
         <div style="display: flex; justify-content: center; margin: 1rem 0 0.2rem;">
             <span style="background: rgba(200,215,235,0.5); padding: 0.4rem 1.2rem; border-radius: 60px; font-size:0.9rem; font-weight:400; backdrop-filter: blur(5px);">
-                🔮 dari login sampai dengerin lagu — all in one
+                🔮 login → pilih model v3 → generate → dengerin — all in one, gratis!
             </span>
-        </div>
-
-        <!-- interactive player preview -->
-        <div class="player-preview">
-            <div class="cover-art">
-                <div class="cover-mini">
-                    <i class="fas fa-play"></i>
-                </div>
-                <div class="track-info">
-                    <h4>Lautan Anggrek <span style="font-weight: 300; font-size: 0.8rem; background: #cfdeee; padding: 2px 10px; border-radius: 40px; margin-left: 6px;">synthwave</span></h4>
-                    <p><i class="fas fa-wave-square"></i> generated by Sonauto AI · 3:24</p>
-                </div>
-            </div>
-            <div class="waveform">
-                <div class="wave-bars">
-                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                </div>
-                <button class="play-btn" id="playBtn" aria-label="play preview">
-                    <i class="fas fa-play" id="playIcon"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- status -->
-        <div style="display: flex; gap: 0.8rem; justify-content: flex-end; margin-top: 0.5rem; font-size: 0.9rem; color: #3e5572;">
-            <span><i class="far fa-check-circle" style="color: #2e7d5e;"></i> Track siap</span>
-            <span><i class="far fa-clock"></i> 2 detik lalu</span>
         </div>
 
         <hr />
 
-        <!-- footer -->
+        <!-- footer dengan link sonauto -->
         <div class="footer-note">
-            <span><i class="fab fa-github"></i> deploy ke Vercel</span>
-            <span><i class="fas fa-camera-retro"></i> poto1.jpg – poto4.jpg (9:16)</span>
-            <span><i class="fas fa-mobile-alt"></i> UI/UX modern · glassmorphism</span>
+            <span><i class="fas fa-cube"></i> model v3 · durasi 3-4 menit</span>
+            <span><i class="fas fa-infinity"></i> generate tanpa batas</span>
+            <span><i class="fas fa-external-link-alt"></i> <a href="https://sonauto.ai" target="_blank" style="color: #2b4d6a; text-decoration: none;">langsung ke sonauto.ai</a></span>
         </div>
     </div>
 
-    <!-- script play simulasi -->
+    <!-- floating tombol atas/bawah -->
+    <div class="scroll-float">
+        <button id="scrollUpBtn" aria-label="gulir ke atas" title="ke step 1">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+        <button id="scrollDownBtn" aria-label="gulir ke bawah" title="ke step 4">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+    </div>
+
+    <!-- script scroll otomatis -->
     <script>
         (function() {
-            const playBtn = document.getElementById('playBtn');
-            const icon = document.getElementById('playIcon');
-            let isPlaying = false;
+            const cards = document.querySelectorAll('.step-card');
+            const upBtn = document.getElementById('scrollUpBtn');
+            const downBtn = document.getElementById('scrollDownBtn');
+            let currentIndex = 0;
 
-            playBtn.addEventListener('click', function(e) {
+            if (cards.length === 0 || !upBtn || !downBtn) return;
+
+            function scrollToCard(index) {
+                if (index < 0) index = 0;
+                if (index >= cards.length) index = cards.length - 1;
+                const card = cards[index];
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                currentIndex = index;
+            }
+
+            upBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                if (isPlaying) {
-                    icon.classList.remove('fa-pause');
-                    icon.classList.add('fa-play');
-                    playBtn.style.background = '#1f293d';
+                if (currentIndex > 0) {
+                    scrollToCard(currentIndex - 1);
                 } else {
-                    icon.classList.remove('fa-play');
-                    icon.classList.add('fa-pause');
-                    playBtn.style.background = '#385a7a';
+                    scrollToCard(cards.length - 1);
                 }
-                isPlaying = !isPlaying;
+            });
+
+            downBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (currentIndex < cards.length - 1) {
+                    scrollToCard(currentIndex + 1);
+                } else {
+                    scrollToCard(0);
+                }
+            });
+
+            function updateCurrentIndexOnScroll() {
+                const viewportCenter = window.scrollY + window.innerHeight / 2;
+                let minDistance = Infinity;
+
+                cards.forEach((card, idx) => {
+                    const rect = card.getBoundingClientRect();
+                    const cardCenter = rect.top + window.scrollY + rect.height / 2;
+                    const distance = Math.abs(cardCenter - viewportCenter);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        currentIndex = idx;
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', () => {
+                requestAnimationFrame(updateCurrentIndexOnScroll);
             });
         })();
     </script>
 </body>
-  </html>
+</html>
