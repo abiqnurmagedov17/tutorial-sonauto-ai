@@ -1,504 +1,549 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial buat Musik · AI </title>
-    <!-- Font & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Tutorial Musik AI · Vercel-inspired</title>
+  <!-- Geist fallback via Inter + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: "Inter", sans-serif;
-            background: linear-gradient(145deg, #f7f9fe 0%, #edf1fa 100%);
-            color: #1b1e2b;
-            line-height: 1.5;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem 1.5rem;
-            scroll-behavior: smooth;
-        }
+    body {
+      background: #fafafa;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #171717;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border-radius: 3rem;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 20px 40px -10px rgba(10, 20, 50, 0.15), 0 0 0 1px rgba(255,255,255,0.8) inset;
-            padding: 2.5rem 2rem;
-            width: 100%;
-            max-width: 1300px;
-            transition: all 0.2s ease;
-        }
+    /* ---- token Vercel-inspired ---- */
+    :root {
+      --ink: #171717;
+      --canvas: #ffffff;
+      --canvas-soft: #fafafa;
+      --canvas-soft-2: #f5f5f5;
+      --primary: #171717;
+      --on-primary: #ffffff;
+      --body: #4d4d4d;
+      --mute: #888888;
+      --hairline: #ebebeb;
+      --hairline-strong: #a1a1a1;
+      --link: #0070f3;
+      --cyan: #50e3c2;
+      --violet: #7928ca;
+      --highlight-pink: #ff0080;
+      --gradient-develop-start: #007cf0;
+      --gradient-develop-end: #00dfd8;
+      --gradient-preview-start: #7928ca;
+      --gradient-preview-end: #ff0080;
+      --gradient-ship-start: #ff4d4d;
+      --gradient-ship-end: #f9cb28;
+      --font-mono: 'JetBrains Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+    }
 
-        /* header */
-        .hero {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-            flex-wrap: wrap;
-        }
+    /* Tipografi Vercel-style */
+    .display-xl {
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 48px;
+      letter-spacing: -2.4px;
+    }
+    .display-lg {
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 40px;
+      letter-spacing: -1.28px;
+    }
+    .display-sm {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 28px;
+      letter-spacing: -0.6px;
+    }
+    .body-lg {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 28px;
+    }
+    .body-md {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+    }
+    .body-sm {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: -0.28px;
+    }
+    .body-sm-strong {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      letter-spacing: -0.28px;
+    }
+    .caption-mono {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      text-transform: uppercase;
+    }
+    .code {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+    .button-lg {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+    }
 
-        .hero-icon {
-            background: #1f2b3c;
-            color: white;
-            width: 56px;
-            height: 56px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 10px 18px -6px rgba(0,20,40,0.3);
-        }
+    /* Kartu utama ala card-marketing-large dengan bayangan bertumpuk */
+    .platform-card {
+      background: var(--canvas);
+      border-radius: 16px;
+      padding: 2.5rem 2.5rem;
+      max-width: 1300px;
+      width: 100%;
+      box-shadow: 
+        0px 1px 1px rgba(0,0,0,0.02),
+        0px 8px 16px -4px rgba(0,0,0,0.04),
+        0px 24px 32px -8px rgba(0,0,0,0.06),
+        inset 0 0 0 1px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+      background: var(--canvas);
+    }
 
-        .hero h1 {
-            font-size: 2.2rem;
-            font-weight: 650;
-            letter-spacing: -0.02em;
-            background: linear-gradient(130deg, #1F2A3F, #2E3B4E);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    /* Gradien mesh sebagai dekorasi background (seperti hero Vercel) */
+    .mesh-gradient-bg {
+      position: absolute;
+      top: -20%;
+      left: -10%;
+      width: 120%;
+      height: 70%;
+      background: radial-gradient(circle at 20% 30%, rgba(0,124,240,0.15) 0%, transparent 45%),
+                  radial-gradient(circle at 75% 40%, rgba(121,40,202,0.2) 0%, transparent 50%),
+                  radial-gradient(circle at 40% 80%, rgba(255,0,128,0.12) 0%, transparent 50%),
+                  radial-gradient(circle at 85% 20%, rgba(0,223,216,0.2) 0%, transparent 45%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-        .hero-badge {
-            background: rgba(75, 100, 140, 0.2);
-            border-radius: 60px;
-            padding: 0.3rem 1.2rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid rgba(255,255,255,0.6);
-            color: #1e2b3a;
-            margin-left: auto;
-        }
+    .content {
+      position: relative;
+      z-index: 2;
+    }
 
-        /* banner info gratis */
-        .gratis-banner {
-            background: rgba(46, 125, 90, 0.12);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(90, 170, 130, 0.35);
-            border-radius: 60px;
-            padding: 0.9rem 1.8rem;
-            margin: 1.5rem 0 1rem 0;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            font-size: 1.1rem;
-            font-weight: 480;
-            color: #1c3a2e;
-            box-shadow: 0 6px 14px rgba(60, 120, 90, 0.1);
-        }
-        .gratis-banner i {
-            color: #2e7d5e;
-            font-size: 1.5rem;
-        }
-        .gratis-banner a {
-            color: #0f3f2d;
-            font-weight: 700;
-            text-decoration: none;
-            border-bottom: 1.5px dotted #2e7d5e;
-        }
+    /* header */
+    .hero-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
 
-        /* grid tutorial - menyesuaikan 9:16 */
-        .tutorial-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin: 2.5rem 0 2rem;
-        }
+    .hero-title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
 
-        .step-card {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: 1.8rem;
-            border: 1px solid rgba(255,255,255,0.8);
-            overflow: hidden;
-            transition: transform 0.25s ease, box-shadow 0.3s;
-            box-shadow: 0 10px 18px -12px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-        }
+    .icon-black {
+      background: var(--primary);
+      color: var(--on-primary);
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
 
-        .step-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 25px 30px -12px rgba(40, 60, 100, 0.25);
-            border-color: rgba(255,255,255,1);
-        }
+    .badge-mono {
+      background: var(--canvas-soft-2);
+      color: var(--body);
+      padding: 0.3rem 1rem;
+      border-radius: 60px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      border: 1px solid var(--hairline);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-        .image-container {
-            width: 100%;
-            aspect-ratio: 9/16;
-            overflow: hidden;
-            background: #ced8e8;
-            position: relative;
-            flex-shrink: 0;
-        }
+    /* Banner gratis ala banner-marketing */
+    .banner-pill {
+      background: var(--canvas-soft-2);
+      border-radius: 100px;
+      padding: 0.7rem 1.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin: 1.2rem 0 1.8rem;
+      border: 1px solid var(--hairline);
+      font-weight: 500;
+      color: var(--ink);
+      backdrop-filter: blur(4px);
+    }
 
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s ease;
-        }
+    .banner-pill i {
+      color: #2e7d5e;
+    }
 
-        .step-card:hover img {
-            transform: scale(1.05);
-        }
+    .banner-pill a {
+      color: var(--link);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dotted var(--link);
+    }
 
-        .step-number {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: #ffffffc7;
-            backdrop-filter: blur(5px);
-            width: 36px;
-            height: 36px;
-            border-radius: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.1rem;
-            border: 1px solid white;
-            color: #182230;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            z-index: 2;
-        }
+    /* Grid tutorial 9:16 */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin: 2.2rem 0 1.8rem;
+    }
 
-        .step-caption {
-            padding: 1.3rem 1rem 1.2rem 1rem;
-            background: rgba(255,255,255,0.5);
-            flex: 1;
-        }
+    .step-card {
+      background: var(--canvas);
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.04);
+      overflow: hidden;
+      transition: all 0.25s;
+      box-shadow: 0px 1px 1px rgba(0,0,0,0.02), 0px 2px 2px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+    }
 
-        .step-caption p {
-            font-weight: 500;
-            font-size: 0.95rem;
-            color: #1b2536;
-            line-height: 1.5;
-        }
+    .step-card:hover {
+      box-shadow: 0px 2px 2px rgba(0,0,0,0.04), 0px 8px 16px -4px rgba(0,0,0,0.08);
+      transform: translateY(-4px);
+    }
 
-        .step-caption strong {
-            color: #1f2f44;
-            font-weight: 700;
-            display: block;
-            margin-bottom: 0.3rem;
-            font-size: 1rem;
-            letter-spacing: -0.2px;
-        }
+    .img-box {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #e2e6ed;
+      position: relative;
+      overflow: hidden;
+    }
 
-        /* floating scroll svg */
-        .scroll-float {
-            position: fixed;
-            right: 28px;
-            bottom: 28px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            z-index: 999;
-        }
-        .scroll-float button {
-            background: #16212e;
-            border: none;
-            border-radius: 60px;
-            width: 54px;
-            height: 54px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 12px 28px -8px #03060b80, 0 0 0 2px rgba(255,255,255,0.4) inset;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: white;
-            font-size: 1.6rem;
-            backdrop-filter: blur(10px);
-            background: rgba(22, 33, 46, 0.85);
-        }
-        .scroll-float button:hover {
-            background: #26384f;
-            transform: scale(1.05);
-        }
+    .img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
 
-        hr {
-            border: none;
-            height: 1px;
-            background: rgba(0,0,0,0.05);
-            margin: 2rem 0 1.5rem 0;
-        }
+    .step-card:hover img {
+      transform: scale(1.04);
+    }
 
-        /* footer github */
-        .github-footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .github-footer a {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: #2b3f5c;
-            font-weight: 550;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.3);
-            padding: 0.6rem 1.5rem;
-            border-radius: 60px;
-            border: 1px solid rgba(255,255,255,0.8);
-            backdrop-filter: blur(8px);
-            transition: all 0.2s ease;
-        }
-        
-        .github-footer a:hover {
-            background: rgba(255, 255, 255, 0.7);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -10px #1f2a3a60;
-            border-color: white;
-        }
-        
-        .github-footer i {
-            font-size: 1.6rem;
-            color: #24292e;
-        }
+    .step-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(6px);
+      width: 32px;
+      height: 32px;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--ink);
+      border: 1px solid rgba(255,255,255,0.9);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      z-index: 3;
+    }
 
-        /* responsive */
-        @media (max-width: 1000px) {
-            .tutorial-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.8rem;
-            }
-        }
+    .caption {
+      padding: 1.2rem 1rem;
+      background: var(--canvas);
+    }
 
-        @media (max-width: 600px) {
-            .tutorial-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero h1 { font-size: 1.8rem; }
-            .glass-card { padding: 1.5rem; }
-            .scroll-float { right: 16px; bottom: 16px; }
-            .scroll-float button { width: 48px; height: 48px; font-size: 1.4rem; }
-        }
-    </style>
+    .caption p {
+      font-size: 14px;
+      color: var(--body);
+    }
+
+    .caption strong {
+      color: var(--ink);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 15px;
+      letter-spacing: -0.2px;
+    }
+
+    /* quote mini */
+    .mini-quote {
+      background: var(--canvas-soft);
+      border-radius: 60px;
+      padding: 0.4rem 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid var(--hairline);
+      color: var(--body);
+      margin: 0.8rem 0 0.4rem;
+    }
+
+    hr {
+      border: 0.5px solid var(--hairline);
+      margin: 2rem 0 1.5rem;
+    }
+
+    /* footer github ala link-inline */
+    .footer-row {
+      display: flex;
+      justify-content: center;
+    }
+
+    .github-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 500;
+      background: var(--canvas-soft);
+      padding: 0.6rem 1.8rem;
+      border-radius: 100px;
+      border: 1px solid var(--hairline);
+      font-size: 15px;
+      transition: all 0.2s;
+    }
+
+    .github-link i {
+      font-size: 1.4rem;
+      color: #24292e;
+    }
+
+    .github-link:hover {
+      background: var(--canvas-soft-2);
+      border-color: var(--hairline-strong);
+    }
+
+    /* floating buttons */
+    .float-nav {
+      position: fixed;
+      right: 28px;
+      bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 100;
+    }
+
+    .float-btn {
+      background: var(--primary);
+      border: none;
+      border-radius: 40px;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: background 0.2s;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .float-btn:hover {
+      background: #2c2c2c;
+    }
+
+    @media (max-width: 950px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
+      .display-xl {
+        font-size: 32px;
+        line-height: 38px;
+      }
+      .platform-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- AUDIO BACKSOUND - AUTO PLAY TANPA KONTROL -->
-    <iframe src="https://titiknadir.edgeone.app/Kahitna%20Feat.%20Monita%20Tahalea%20-%20Titik%20Nadir%20(Official%20Music%20Video).mp3" 
-            type="audio/mp3" 
-            allow="autoplay" 
-            style="display:none; width:0; height:0;"
-            id="hiddenAudio">
-    </iframe>
-    
-    <audio id="backsound" loop style="display:none;">
-        <source src="https" type="audio/mp3">
-    </audio>
+  <!-- audio tersembunyi (tetap seperti asli) -->
+  <iframe src="https://titiknadir.edgeone.app/Kahitna%20Feat.%20Monita%20Tahalea%20-%20Titik%20Nadir%20(Official%20Music%20Video).mp3" 
+          type="audio/mp3" allow="autoplay" style="display:none;" id="hiddenAudio"></iframe>
+  <audio id="backsound" loop style="display:none;">
+    <source src="https" type="audio/mp3">
+  </audio>
 
-    <div class="glass-card">
-        <!-- header modern -->
-        <div class="hero">
-            <div class="hero-icon"><i class="fas fa-headphones-alt"></i></div>
-            <h1>Tutorial <span style="font-weight:300;">bikin</span> lagu AI</h1>
-            <div class="hero-badge"><i class="fas fa-music" style="margin-right: 6px;"></i>sonauto</div>
+  <div class="platform-card">
+    <div class="mesh-gradient-bg"></div>
+    <div class="content">
+      <!-- header -->
+      <div class="hero-section">
+        <div class="hero-title">
+          <div class="icon-black"><i class="fas fa-headphones-alt"></i></div>
+          <h1 class="display-lg" style="color: var(--ink);">Tutorial <span style="font-weight:400;">bikin</span> lagu AI</h1>
         </div>
-
-        <!-- banner gratis -->
-        <div class="gratis-banner">
-            <i class="fas fa-gift"></i>
-            <span><strong>AI musik ini gratis!</strong> Kamu bisa generate lagu berapapun tanpa bayar sepeserpun. Langsung aja ke websitenya →<a href="https://sonauto.ai" target="_blank" rel="noopener">sonauto.ai<i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a></span>
+        <div class="badge-mono">
+          <i class="fas fa-music" style="color: var(--violet);"></i> sonauto
         </div>
+      </div>
 
-        <!-- 4 step grid dengan poto1.jpg - poto4.jpg -->
-        <div class="tutorial-grid" id="tutorialGrid">
-            <!-- step 1 / poto1.jpg -->
-            <div class="step-card">
-                <div class="image-container">
-                    <span class="step-number">1</span>
-                    <img src="poto1.jpg" alt="Login ke Sonauto AI" loading="lazy">
-                </div>
-                <div class="step-caption">
-                    <p><strong>🔐 Login/daftar dulu</strong> Pertama, daftar bebas pake Google, email, atau Apple. Klik sign in di pojok kanan atas.</p>
-                </div>
-            </div>
-            <!-- step 2 / poto2.jpg (dengan tambahan model v3) -->
-            <div class="step-card">
-                <div class="image-container">
-                    <span class="step-number">2</span>
-                    <img src="poto2.jpg" alt="Pilih model v3 dan genre" loading="lazy">
-                </div>
-                <div class="step-caption">
-                    <p><strong>🎛️ Pilih model v3</strong> Gunakan model terbaru v3 untuk kualitas musik bagus — mendukung durasi 3–4 menit. Tentukan genre sesuai mood.</p>
-                </div>
-            </div>
-            <!-- step 3 / poto3.jpg -->
-            <div class="step-card">
-                <div class="image-container">
-                    <span class="step-number">3</span>
-                    <img src="poto3.jpg" alt="Generate lagu" loading="lazy">
-                </div>
-                <div class="step-caption">
-                    <p><strong>✨ Generate</strong> Tulis deskripsi lagu yang kamu mau (bebas), lalu klik generate dan tunggu beberapa detik.</p>
-                </div>
-            </div>
-            <!-- step 4 / poto4.jpg -->
-            <div class="step-card">
-                <div class="image-container">
-                    <span class="step-number">4</span>
-                    <img src="poto4.jpg" alt="Play dan download musik" loading="lazy">
-                </div>
-                <div class="step-caption">
-                    <p><strong>🎶 Play & download</strong> Hasil muncul otomatis. Putar atau download lagu — semua gratis, tanpa watermark.</p>
-                </div>
-            </div>
+      <!-- banner gratis -->
+      <div class="banner-pill body-sm">
+        <i class="fas fa-gift"></i>
+        <span><strong>AI musik ini gratis!</strong> Generate lagu tanpa batas. Langsung ke → <a href="https://sonauto.ai" target="_blank" rel="noopener">sonauto.ai <i class="fas fa-external-link-alt" style="font-size: 0.7rem;"></i></a></span>
+      </div>
+
+      <!-- grid 4 kartu -->
+      <div class="grid-4" id="tutorialGrid">
+        <div class="step-card">
+          <div class="img-box">
+            <span class="step-badge">1</span>
+            <img src="poto1.jpg" alt="Login Sonauto" loading="lazy">
+          </div>
+          <div class="caption">
+            <p><strong>🔐 Login/daftar</strong> Daftar gratis pakai Google, email, atau Apple.</p>
+          </div>
         </div>
-
-        <!-- mini quote -->
-        <div style="display: flex; justify-content: center; margin: 1rem 0 0.2rem;">
-            <span style="background: rgba(200,215,235,0.5); padding: 0.4rem 1.2rem; border-radius: 60px; font-size:0.9rem; font-weight:400; backdrop-filter: blur(5px);">
-                🔮 login → pilih model v3 → generate → dengerin — all in one, gratis!
-            </span>
+        <div class="step-card">
+          <div class="img-box">
+            <span class="step-badge">2</span>
+            <img src="poto2.jpg" alt="Model v3" loading="lazy">
+          </div>
+          <div class="caption">
+            <p><strong>🎛️ Model v3</strong> Gunakan v3 untuk kualitas 3–4 menit, pilih genre.</p>
+          </div>
         </div>
-
-        <hr />
-
-        <!-- FOOTER: logo github + teks Abiqnurmagedov17 -->
-        <div class="github-footer">
-            <a href="https://github.com/Abiqnurmagedov17" target="_blank" rel="noopener">
-                <i class="fab fa-github"></i>
-                <span>Abiqnurmagedov17</span>
-            </a>
+        <div class="step-card">
+          <div class="img-box">
+            <span class="step-badge">3</span>
+            <img src="poto3.jpg" alt="Generate lagu" loading="lazy">
+          </div>
+          <div class="caption">
+            <p><strong>✨ Generate</strong> Tulis deskripsi lagu, klik generate, tunggu sekejap.</p>
+          </div>
         </div>
+        <div class="step-card">
+          <div class="img-box">
+            <span class="step-badge">4</span>
+            <img src="poto4.jpg" alt="Download musik" loading="lazy">
+          </div>
+          <div class="caption">
+            <p><strong>🎶 Play & download</strong> Hasil muncul, putar atau unduh – tanpa watermark.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center;">
+        <div class="mini-quote">
+          🔮 login → pilih v3 → generate → dengerin — all in one, gratis!
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="footer-row">
+        <a href="https://github.com/Abiqnurmagedov17" target="_blank" class="github-link">
+          <i class="fab fa-github"></i>
+          <span>Abiqnurmagedov17</span>
+        </a>
+      </div>
     </div>
+  </div>
 
-    <!-- floating tombol atas/bawah -->
-    <div class="scroll-float">
-        <button id="scrollUpBtn" aria-label="gulir ke atas" title="ke step 1">
-            <i class="fas fa-chevron-up"></i>
-        </button>
-        <button id="scrollDownBtn" aria-label="gulir ke bawah" title="ke step 4">
-            <i class="fas fa-chevron-down"></i>
-        </button>
-    </div>
+  <!-- float nav -->
+  <div class="float-nav">
+    <button class="float-btn" id="scrollUpBtn" aria-label="ke atas"><i class="fas fa-chevron-up"></i></button>
+    <button class="float-btn" id="scrollDownBtn" aria-label="ke bawah"><i class="fas fa-chevron-down"></i></button>
+  </div>
 
-    <!-- script untuk autoplay maksimal -->
-    <script>
-        (function() {
-            // ========== AUTO PLAY BACKSOUND (TANPA KONTROL) ==========
-            const audio = document.getElementById('backsound');
-            
-            // Set volume
-            audio.volume = 0.3; // Volume 30% biar tidak terlalu keras
-            
-            // Fungsi untuk mencoba autoplay dengan berbagai cara
-            function forceAutoplay() {
-                // Cara 1: Play biasa
-                audio.play().catch(() => {
-                    // Cara 2: Play dengan interaksi simulasi (create event)
-                    const playPromise = audio.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(() => {
-                            // Cara 3: Jika masih gagal, tunggu sebentar lalu coba lagi
-                            setTimeout(() => {
-                                audio.play().catch(() => {
-                                    console.log('Autoplay tetap dicegah browser, tapi kita sudah berusaha');
-                                });
-                            }, 1000);
-                        });
-                    }
-                });
-            }
-            
-            // Jalankan autoplay
-            forceAutoplay();
-            
-            // Tambahan: coba autoplay lagi setelah halaman fully loaded
-            window.addEventListener('load', function() {
-                setTimeout(forceAutoplay, 500);
-            });
-            
-            // Deteksi interaksi user pertama kali (untuk membantu autoplay)
-            document.body.addEventListener('click', function once() {
-                audio.play().catch(() => {});
-                document.body.removeEventListener('click', once);
-            }, { once: true });
-            
-            document.body.addEventListener('touchstart', function once() {
-                audio.play().catch(() => {});
-                document.body.removeEventListener('touchstart', once);
-            }, { once: true });
+  <script>
+    (function() {
+      // audio autoplay (tetap seperti asli)
+      const audio = document.getElementById('backsound');
+      audio.volume = 0.3;
+      function tryPlay() {
+        audio.play().catch(() => {
+          setTimeout(() => audio.play().catch(()=>{}), 900);
+        });
+      }
+      tryPlay();
+      window.addEventListener('load', () => setTimeout(tryPlay, 400));
+      document.body.addEventListener('click', function once(){ audio.play().catch(()=>{}); }, {once:true});
+      document.body.addEventListener('touchstart', function once(){ audio.play().catch(()=>{}); }, {once:true});
 
-            // ========== SCROLL STEP ==========
-            const cards = document.querySelectorAll('.step-card');
-            const upBtn = document.getElementById('scrollUpBtn');
-            const downBtn = document.getElementById('scrollDownBtn');
-            let currentIndex = 0;
+      // scroll step
+      const cards = document.querySelectorAll('.step-card');
+      const upBtn = document.getElementById('scrollUpBtn');
+      const downBtn = document.getElementById('scrollDownBtn');
+      let idx = 0;
 
-            if (cards.length === 0 || !upBtn || !downBtn) return;
+      function scrollTo(i) {
+        if (!cards.length) return;
+        i = Math.min(Math.max(i, 0), cards.length-1);
+        cards[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        idx = i;
+      }
 
-            function scrollToCard(index) {
-                if (index < 0) index = 0;
-                if (index >= cards.length) index = cards.length - 1;
-                const card = cards[index];
-                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                currentIndex = index;
-            }
+      upBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollTo(idx > 0 ? idx-1 : cards.length-1);
+      });
+      downBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollTo(idx < cards.length-1 ? idx+1 : 0);
+      });
 
-            upBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (currentIndex > 0) {
-                    scrollToCard(currentIndex - 1);
-                } else {
-                    scrollToCard(cards.length - 1);
-                }
-            });
-
-            downBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (currentIndex < cards.length - 1) {
-                    scrollToCard(currentIndex + 1);
-                } else {
-                    scrollToCard(0);
-                }
-            });
-
-            function updateCurrentIndexOnScroll() {
-                const viewportCenter = window.scrollY + window.innerHeight / 2;
-                let minDistance = Infinity;
-
-                cards.forEach((card, idx) => {
-                    const rect = card.getBoundingClientRect();
-                    const cardCenter = rect.top + window.scrollY + rect.height / 2;
-                    const distance = Math.abs(cardCenter - viewportCenter);
-                    if (distance < minDistance) {
-                        minDistance = distance;
-                        currentIndex = idx;
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', () => {
-                requestAnimationFrame(updateCurrentIndexOnScroll);
-            });
-        })();
-    </script>
+      window.addEventListener('scroll', () => {
+        const center = window.scrollY + window.innerHeight/2;
+        let min = Infinity;
+        cards.forEach((c, i) => {
+          const rect = c.getBoundingClientRect();
+          const cardCenter = rect.top + window.scrollY + rect.height/2;
+          const dist = Math.abs(cardCenter - center);
+          if (dist < min) { min = dist; idx = i; }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
